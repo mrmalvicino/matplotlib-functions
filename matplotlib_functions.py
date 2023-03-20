@@ -41,7 +41,7 @@ def plot_LR(x, y, **kwargs):
     # Define possible **kwargs:
     kwargs = {
         'figsize': (10,5),
-        'title': 'plot',
+        'title': 'Plot',
         'xlabel': '',
         'ylabel': ('',''),
         'xscale': 'linear',
@@ -53,7 +53,8 @@ def plot_LR(x, y, **kwargs):
         'yticklabels': ('default','default'),
         'xlim': 'default',
         'ylim': ('default','default'),
-        'save': False
+        'save': False,
+        'save_folder': 'default'
     }
 
     # Overwrite the possible **kwargs with the actual inputs:
@@ -109,8 +110,10 @@ def plot_LR(x, y, **kwargs):
 
     # Save plot:
     if kwargs['save'] == True:
-        title=kwargs['title']
-        graph.savefig(os.path.join(root_dir, 'images', f'{title}'+'.png'))
+        if kwargs['save_folder'] == 'default':
+            kwargs['save_folder'] = os.path.dirname(__file__)
+        title = kwargs['title']
+        graph.savefig(os.path.join(kwargs['save_folder'], f'{title}'+'.png'))
     else:
         plt.show()
 
